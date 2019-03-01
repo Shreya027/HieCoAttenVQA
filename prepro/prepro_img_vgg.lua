@@ -2,8 +2,6 @@ require 'nn'
 require 'optim'
 require 'torch'
 require 'math'
-require 'cunn'
-require 'cutorch'
 require 'loadcaffe'
 require 'image'
 require 'hdf5'
@@ -32,8 +30,8 @@ cmd:option('-backend', 'cudnn', 'nn|cudnn')
 opt = cmd:parse(arg)
 print(opt)
 
---cutorch.setDevice(opt.gpuid)
-net=loadcaffe.load(opt.cnn_proto, opt.cnn_model,opt.backend);
+cutorch.setDevice(-1)
+net=loadcaffe.load(opt.cnn_proto, opt.cnn_model,nn);
 print(net)
 
 
